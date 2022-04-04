@@ -112,11 +112,6 @@ class Transformacje:
         return(x00, y00)
     
     
-    def fi_lam2neu(self, fi, lam):
-        n = np.array([-np.sin(fi)*np.cos(lam), -np.sin(fi)*np.sin(lam), np.cos(fi)])#dY
-        e = np.array([-np.sin(lam), np.cos(lam), 0])#dX
-        u = np.array([np.cos(fi)*np.cos(lam), np.cos(fi)*np.sin(lam), np.sin(fi)])#dZ
-        return n, e, u
     
     def NEU(self, X0, Y0, Z0, X, Y, Z, typ: str = "XYZ"):
         if typ == "XYZ":
@@ -126,11 +121,15 @@ class Transformacje:
             
             fi, lam, h = self.xyz2blh_hirvonen(X, Y, Z)
             
-            n, e, u = self.fi_lam2neu(fi, lam)
+            n = np.array([-np.sin(fi)*np.cos(lam), -np.sin(fi)*np.sin(lam), np.cos(fi)])#dY
+            e = np.array([-np.sin(lam), np.cos(lam), 0])#dX
+            u = np.array([np.cos(fi)*np.cos(lam), np.cos(fi)*np.sin(lam), np.sin(fi)])#dZ
             
             N = n * dY
             E = e * dX
             U = u * dZ
+        else:
+            print('Działanie niemożliwe')
         return N, E, U
             
             
