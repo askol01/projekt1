@@ -26,4 +26,3 @@ for i in range(len(tablica)):
 wsp_out = np.hstack([blh, u92])    
 np.savetxt("wsp_out.txt", wsp_out, delimiter=',  ', fmt = ['%10.2f', '%10.2f', '%10.3f', '%10.3f', '%10.3f'], header = 'Konwersja współrzędnych geodezyjnych \\ Aleksandra Skolimowska \n blh      układ 1992')
   
-
