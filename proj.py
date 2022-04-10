@@ -261,9 +261,9 @@ class Transformacje:
         e = np.array([-np.sin(lam), np.cos(lam), 0])#dX
         u = np.array([np.cos(fi)*np.cos(lam), np.cos(fi)*np.sin(lam), np.sin(fi)])#dZ
             
-        N = n * dY
-        E = e * dX
-        U = u * dZ
+        N = np.dot(n, dY)
+        E = np.dot(e , dX)
+        U = np.dot(u , dZ)
         return N, E, U
             
             
