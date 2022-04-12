@@ -257,14 +257,19 @@ class Transformacje:
             
         fi, lam, h = self.xyz2blh_hirvonen(X, Y, Z)
             
-        n = np.array([-np.sin(fi)*np.cos(lam), -np.sin(fi)*np.sin(lam), np.cos(fi)])#dY
-        e = np.array([-np.sin(lam), np.cos(lam), 0])#dX
-        u = np.array([np.cos(fi)*np.cos(lam), np.cos(fi)*np.sin(lam), np.sin(fi)])#dZ
-            
-        N = np.dot(n, dY)
-        E = np.dot(e , dX)
-        U = np.dot(u , dZ)
-        return N, E, U
+        R = np.array([[-np.sin(fi)*np.cos(lam), -np.sin(fi)*np.sin(lam), np.cos(fi)],
+                      [-np.sin(lam), np.cos(lam), 0],
+                      [np.cos(fi)*np.cos(lam), np.cos(fi)*np.sin(lam), np.sin(fi)]])
+        
+        d = np.array([[dX],
+                     [dY],
+                     [dZ]])
+        NEU = R*d
+        
+        n = NEU[0,0]
+        e = NEU[1,0]
+        u = NEU[2,0]
+        return n, e, u
             
             
     def odl_2d_3d(self, X0, Y0, Z0, X, Y, Z):
